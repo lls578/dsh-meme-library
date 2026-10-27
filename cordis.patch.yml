@@ -1,0 +1,10 @@
+# ============================================================================
+# dsh-meme-library —— DSH bundle patch
+# 装到 profile 后自动挂载；配置项都可在 profile 的 cordis.patch.yml 覆盖。
+# ============================================================================
+
+- insert:
+    - id: meme-library
+      name: dsh-meme-library
+      config:
+        maxResults: 5

@@ -1,0 +1,59 @@
+{
+  "name": "dsh-meme-library",
+  "version": "0.1.0",
+  "description": "DSH 插件：梗库 —— 6668 条梗/缩写/黑话本地毫秒级查询，先接梗再解释",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "lib",
+    "data/memes.db",
+    "data/README.md",
+    "cordis.patch.yml",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "scripts"
+  ],
+  "scripts": {
+    "test": "node test/plugin.test.mjs",
+    "check": "node --check index.js && node --check lib/memes.mjs && node --check test/plugin.test.mjs"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "meme",
+    "梗",
+    "梗库"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.5"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-tools": "*",
+    "@deepseek-ai/schemastery": "*"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-tools": {
+      "optional": true
+    },
+    "@deepseek-ai/schemastery": {
+      "optional": true
+    }
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
