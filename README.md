@@ -28,7 +28,10 @@ DSH（DeepSeek Harness）插件：**梗库**。给模型一个本地梗库，遇
 # 本地目录
 dsh plugin --profile desktop add link:C:\path\to\dsh-meme-library
 
-# 发布到 npm / GitHub 后
+# 直接装 GitHub 仓库（含 16MB 词库）
+dsh plugin --profile desktop add https://github.com/lls578/dsh-meme-library/archive/refs/heads/main.tar.gz
+
+# 发布到 npm 后
 dsh plugin --profile desktop add dsh-meme-library
 ```
 
