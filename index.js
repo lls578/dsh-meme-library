@@ -64,8 +64,22 @@ function cfgGet(config, key, fallback) {
 
 const TEXT_OUTPUT = {
   schema: { type: "object", properties: {}, additionalProperties: true },
-  render: () => [],
+  render: (_args, value) => [
+    {
+      type: "text",
+      text: typeof value === "string" ? value : JSON.stringify(value, null, 2),
+    },
+  ],
 };
+
+/** 去掉 undefined / 不可序列化字段（宿主要求 lossless JSON）。 */
+function safe(value) {
+  try {
+    return JSON.parse(JSON.stringify(value));
+  } catch {
+    return { ok: false, error: "输出无法序列化" };
+  }
+}
 
 export const name = "meme-library";
 export const inject = ["tools"];
@@ -105,7 +119,7 @@ export function apply(ctx, config) {
         output: TEXT_OUTPUT,
         async execute(args) {
           try {
-            return await spec.execute(args || {});
+            return safe(await spec.execute(args || {}));
           } catch (e) {
             return { ok: false, error: String(e?.message || e) };
           }
